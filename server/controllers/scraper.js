@@ -1,20 +1,21 @@
-//Scrape Wildire Data
 import axios from 'axios'
 import cheerio from 'cheerio'
     
 const url = 'http://bcfireinfo.for.gov.bc.ca/hprScripts/WildfireNews/Fires.asp?Mode=normal&AllFires=1&FC=0'
 
-const scraper = () => {
-	axios(url)
-  .then(response => {
-    const html = response.data
-    buildFireData(html)
-  })
-  .catch(console.error)
+const scraper = async () => {
+	try {
+		const response = await axios.get(url)
+		const html = response.data
+		//console.log(buildFireData(html))
+    return buildFireData(html)
+	} catch (error) {
+		console.error(error)
+	}
 }
 
 const buildFireData = (html) => {
-	let object = []
+	let fireData = []
 	const $ = cheerio.load(html)
 	let row = $('table tbody tr')
 	$(row).each((index, element) => {
@@ -32,14 +33,13 @@ const buildFireData = (html) => {
 
 	    if(status !== 'Out') {
 	    	const tableRow = { fireNo, lat, lon, location, discoveryDate, status, hectares }
-	    	object.push(tableRow)
+	    	fireData.push(tableRow)
 	    }
 	  }
-
-		//console.log($(element).find('td').text())
 	})
 
-	console.log(object)
+	return fireData 
+	//console.log(fireData)
 
 }
 
