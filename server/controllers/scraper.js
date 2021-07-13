@@ -7,7 +7,6 @@ const scraper = async () => {
 	try {
 		const response = await axios.get(url)
 		const html = response.data
-		//console.log(buildFireData(html))
     return buildFireData(html)
 	} catch (error) {
 		console.error(error)
@@ -39,7 +38,6 @@ const buildFireData = (html) => {
 	})
 
 	return fireData 
-	//console.log(fireData)
 
 }
 
@@ -56,8 +54,3 @@ const getLatLon = (href) => {
 }
 
 export default scraper
-
-// Fetch data
-// Target data 
-// Build object
-// POST object

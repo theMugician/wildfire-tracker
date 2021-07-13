@@ -1,11 +1,13 @@
 import mongoose from 'mongoose'
 
 const firesSchema = mongoose.Schema({
-	fires: Array,
-	createdAt: {
-		type: Date,
-		default: new Date()
-	}
+  fireNo: String,
+  lat: Number,
+  lon: Number,
+  location: String,
+  discoveryDate: String,
+  status: String,
+  hectares: String
 })
 
 const ActiveFires = mongoose.model('ActiveFires', firesSchema)
