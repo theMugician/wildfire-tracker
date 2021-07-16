@@ -23,14 +23,14 @@ const buildFireData = (html) => {
 	    const tds = $(element).find('td');
 
 	    const fireNo = $(tds[1]).text();
-	    const latLon = $($(tds[1]).find('a')).attr('href')
+	    const latLon = $($(tds[1]).find('a[target=_blank]')).attr('href')
 	    const [lon, lat] = getLatLon(latLon)
 	    const location = $(tds[2]).text();
 	    const discoveryDate = $(tds[3]).text();
 	    const status = $(tds[4]).text();
 	    const hectares = $(tds[5]).text();
 
-	    if(status !== 'Out') {
+	    if(status !== 'Out' && lat !== undefined && lon !== undefined) {
 	    	const tableRow = { fireNo, lat, lon, location, discoveryDate, status, hectares }
 	    	fireData.push(tableRow)
 	    }

@@ -12,6 +12,7 @@ export const getFires = async (request, response) => {
 
 export const createFires = async (request, response) => {
 	try {
+		await ActiveFires.remove()
 		const fireData = await scraper()
 		const currentActiveFires = await ActiveFires.insertMany(fireData)
 		response.status(201).json(currentActiveFires)

@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-const url = 'bc-fire-data.json'
+const url = 'http://localhost:8000/fires'
 
 export const fetchFires = () => axios.get(url)
