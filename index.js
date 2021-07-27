@@ -7,6 +7,7 @@ import firesRoutes from './routes/fires.js'
 import { createFires } from './controllers/fires.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import path from 'path'
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 
+app.use(express.static(path.join('build')))
 app.use('/fires', firesRoutes)
 
 const CONNECTION_URL = process.env.CONNECTION_URL

@@ -16,7 +16,7 @@ const App = () => {
   },[dispatch])
 
   return (
-    <div className="App container">
+    <div className="App">
       <Header></Header>
       <Map></Map>
     </div>
