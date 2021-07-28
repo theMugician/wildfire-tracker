@@ -12,17 +12,20 @@ export const getFires = async (request, response) => {
 	}
 }
 
-export const createFires = async (request, response) => {
+export const createFires = async (req, res) => {
 	try {
-		// console.log(request.token)
+		//console.log(request.token)
 		// console.log(process.env.SECRET_KEY)
-		jwt.verify(request.token, process.env.SECRET_KEY)
+		jwt.verify(req.token, process.env.SECRET_KEY)
 		await ActiveFires.remove()
 		const fireData = await scraper()
 		const currentActiveFires = await ActiveFires.insertMany(fireData)
-		response.status(201).json(currentActiveFires)
+
+		//response.status(201).json(bearerHeader)
+		res.status(201).json({currentActiveFires})
+
 	} catch (error) {
 		console.error(error)
-		response.status(404).json({ message: error.mesage })
+		res.status(404).json({ message: error.message })
 	}
 }
