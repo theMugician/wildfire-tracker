@@ -2,10 +2,6 @@ import dotenv from 'dotenv'
 
 const verifyToken = (req, res, next) => {
 
-  // req.token = process.env.JWT
-  // next()
-
-  
   const bearerHeader = req.headers['authorization']
 
   if(typeof bearerHeader !== 'undefined') {
@@ -17,8 +13,7 @@ const verifyToken = (req, res, next) => {
     req.token = bearerToken
     next()
   } else {
-    // Forbidden
-    //res.json({ bearerHeader: bearerHeader })
+
     res.sendStatus(403)
   }
 
