@@ -21,7 +21,6 @@ export const createFires = async (req, res) => {
 		const currentActiveFires = await ActiveFires.insertMany(fireData)
 
 		res.status(201).json({currentActiveFires})
-
 	} catch (error) {
 		console.error(error)
 		res.status(404).json({ message: error.message })

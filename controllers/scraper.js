@@ -7,7 +7,7 @@ const scraper = async () => {
 	try {
 		const response = await axios.get(url)
 		const html = response.data
-    return buildFireData(html)
+    	return buildFireData(html)
 	} catch (error) {
 		console.error(error)
 	}
